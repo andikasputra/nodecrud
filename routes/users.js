@@ -24,6 +24,15 @@ router.post('/', (req, res) => {
 	})
 })
 
+router.get('/:id', (req, res) => {
+	User.findById(req.params.id)
+		.then((user) => {
+			res.render('user/show', user.dataValues)
+		}).catch((err) => {
+			res.render('error', err)
+		})
+})
+
 router.get('/new', (req, res) => {
 	res.render('user/create');
 })
