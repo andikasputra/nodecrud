@@ -1,0 +1,143 @@
+.navbar {
+	border: none;
+	transition: ease .4s;
+}
+.navbar-brand {
+	color: #fff;
+}
+.navbar-nav>li>a {
+	color: #fff;
+}
+
+.carousel-inner {
+	height: 650px;
+	background-color: rgba(24,3,31,0.9);
+}
+.carousel-inner::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: url('../img/bg.jpg');
+	background-size: cover;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	background-attachment: fixed;
+}
+.carousel-inner .item {
+	width: 100%;
+	height: 100%;
+}
+.carousel-inner .item .carousel-caption {
+	top: 30%;
+}
+.carousel-inner .item .carousel-caption h1 {
+	font-size: 64px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.carousel-inner .item .carousel-caption a.btn-primary {
+	border-radius: 1px;
+	background-color: #0072ff;
+}
+.carousel-control.right, .carousel-control.left {
+	padding: 10px;
+	border-radius: 50%;
+	top: 45%;
+	height: 60px;
+	width: 60px;
+	background: transparent;
+}
+.fa-angle-down.animate {
+	font-size: 26px;
+	animation: updown 1s infinite;
+}
+@keyframes updown {
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(30px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+
+.service {
+	padding: 80px 0;
+	color: #fff;
+	background: #00c6ff;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #0072ff, #00c6ff);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #0072ff, #00c6ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.service .item i.fa {
+	font-size: 46px;
+}
+
+.product {
+	padding: 100px 0;
+}
+.product .img-responsive {
+	transform: translateY(80px);
+	opacity: 0;
+	transition: ease .8s;
+}
+.product h2 {
+	transform: translateY(80px);
+	opacity: 0;
+	transition: ease 1s;
+}
+.product p {
+	transform: translateY(80px);
+	opacity: 0;
+	transition: ease 1.4s;
+}
+.product.abu {
+	background-color: #f6f6f6;
+}
+.product .line {
+	transition: ease 1.8s;
+	width: 0;
+	height: 4px;
+	background-color: #00c6ff;
+	margin-top: 20px;
+}
+.product h2 {
+	font-weight: bold;
+	margin: 30px 0;
+	font-size: 48px;
+}
+.product p {
+	font-size: 16px;
+	line-height: 1.7;
+}
+
+.connect {
+	width: 100%;
+	padding: 80px 0;
+	background-image: url('../img/banner-bg.jpg');
+	background-size: cover;
+	background-attachment: fixed;
+}
+.connect h3 {
+	color: #fff;
+	margin: 0;
+}
+
+.footer {
+	padding: 60px 0;
+}
+.footer a {
+	font-weight: bold;
+	display: inline-block;
+	margin: 10px;
+}
+.footer a:first-child {
+	margin-left: 0;
+}
+.footer p.copy {
+	font-size: 12px;
+	color: #666;
+}

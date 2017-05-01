@@ -1,0 +1,25 @@
+<div class="col-md-8 col-md-offset-2">
+	<h2>Users</h2>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nama Lengkap</th>
+				<th>Email</th>
+				<th>Waktu Daftar</th>
+				<th>Aksi</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each users}}
+				<tr>
+					<td>{{dataValues.id}}</td>
+					<td>{{dataValues.first_name}} {{dataValues.last_name}}</td>
+					<td>{{dataValues.email}}</td>
+					<td>{{dataValues.date_register}}</td>
+					<td></td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</div>
