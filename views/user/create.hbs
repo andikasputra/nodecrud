@@ -1,6 +1,6 @@
 <div class="col-md-4 col-md-offset-4">
 	<h2>Input User</h2>
-	<form action="/users" method="post" class="form">
+	<form action="/users" method="post" class="form" enctype="multipart/form-data">
 		<div class="form-group">
 			<label for="firstname">First Name</label>
 			<input type="text" name="firstname" id="firstname" class="form-control">
@@ -12,6 +12,10 @@
 		<div class="form-group">
 			<label for="email">Email</label>
 			<input type="email" name="email" id="email" class="form-control">
+		</div>
+		<div class="form-group">
+			<label for="photo">Photo</label>
+			<input type="file" class="form-control" name="photo" id="photo">
 		</div>
 		<div class="form-group">
 			<button class="btn btn-primary" type="submit">Save User</button>

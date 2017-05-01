@@ -26,6 +26,9 @@ module.exports = function(sequelize, DataTypes) {
     date_register: {
       type: DataTypes.STRING,
       defaultValue: sequelize.fn('NOW')
+    },
+    photo: {
+      type: DataTypes.STRING
     }
   }, {
     classMethods: {
