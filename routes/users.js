@@ -1,4 +1,5 @@
 var express = require('express');
+var fs = require('fs');
 var router = express.Router();
 // handle multipart form data
 const multer = require('multer');
@@ -34,7 +35,6 @@ router.post('/', upload.single('photo'), (req, res) => {
 		email: req.body.email,
 		photo: req.file.filename
 	}).then((user) => {
-		console.log(user);
 		res.redirect('/users')
 	}).catch((err) => {
 		res.render('error', err);
@@ -81,15 +81,23 @@ router.put('/:id/edit', (req, res) => {
 })
 
 router.get('/:id/delete', (req, res) => {
-	User.destroy({
-		where: {
-			id: req.params.id
-		}
-	}).then((user) => {
-		res.redirect('/users')
-	}).catch((err) => {
-		res.render('error', err)
-	})
+	User.findById(req.params.id)
+		.then((user) => {
+			console.log(user.dataValues.photo)
+			fs.unlink(`uploads/${user.dataValues.photo}`, () => {
+				User.destroy({
+					where: {
+						id: user.dataValues.id
+					}
+				}).then(() => {
+					res.redirect('/users')
+				}).catch((err) => {
+					res.render('error', err)
+				})
+			})
+		}).catch((err) => {
+			res.render('error', err)
+		})
 })
 
 module.exports = router;
