@@ -10,13 +10,16 @@ const User = models.User;
 
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
-		cb(null, 'uploads/')
+		// set uploads directory
+		cb(null, 'uploads/photo/')
 	},
 	filename: (req, file, cb) => {
+		// save file with current timestamp + user email + file extension
 		cb(null, Date.now() + req.body.email + path.extname(file.originalname));
 	}
 })
 
+// initialize the multer configuration
 const upload = multer({storage: storage});
 
 /* GET users listing. */
@@ -84,7 +87,7 @@ router.get('/:id/delete', (req, res) => {
 	User.findById(req.params.id)
 		.then((user) => {
 			console.log(user.dataValues.photo)
-			fs.unlink(`uploads/${user.dataValues.photo}`, () => {
+			fs.unlink(`uploads/photo/${user.dataValues.photo}`, () => {
 				User.destroy({
 					where: {
 						id: user.dataValues.id
