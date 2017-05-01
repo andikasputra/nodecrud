@@ -53,4 +53,16 @@ router.put('/:id/edit', (req, res) => {
 	})
 })
 
+router.get('/:id/delete', (req, res) => {
+	User.destroy({
+		where: {
+			id: req.params.id
+		}
+	}).then((user) => {
+		res.redirect('/users')
+	}).catch((err) => {
+		res.render('error', err)
+	})
+})
+
 module.exports = router;
