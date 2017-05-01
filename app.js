@@ -5,6 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// for support method put, delete, and others via form view
+const methodOverride = require('method-override');
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -21,6 +24,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// override with POST having ?_method=some_method
+app.use(methodOverride('_method'));
 
 app.use('/', index);
 app.use('/users', users);

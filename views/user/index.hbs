@@ -1,5 +1,5 @@
 <div class="col-md-8 col-md-offset-2">
-	<h2>Users</h2>
+	<h2>Users <a href="/users/new" class="btn btn-primary text-right btn-sm">Add user</a></h2>
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -17,7 +17,10 @@
 					<td>{{dataValues.first_name}} {{dataValues.last_name}}</td>
 					<td>{{dataValues.email}}</td>
 					<td>{{dataValues.date_register}}</td>
-					<td></td>
+					<td>
+						<a href="/users/{{dataValues.id}}/edit" class="btn btn-warning btn-sm">Edit</a>
+						<a href="/users/{{dataValues.id}}/delete" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a>
+					</td>
 				</tr>
 			{{/each}}
 		</tbody>

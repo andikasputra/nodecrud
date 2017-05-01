@@ -8,7 +8,6 @@ const User = models.User;
 router.get('/', function(req, res, next) {
 	User.findAll()
 	.then((users) => {
-		console.log(users[0].dataValues.id)
 	  res.render('user/index', {users: users});
 	})
 });
@@ -27,6 +26,31 @@ router.post('/', (req, res) => {
 
 router.get('/new', (req, res) => {
 	res.render('user/create');
+})
+
+router.get('/:id/edit', (req, res) => {
+	User.findById(req.params.id)
+		.then((user) => {
+			res.render('user/edit', user.dataValues)
+		}).catch((err) => {
+			res.render('error', err);
+		})
+})
+
+router.put('/:id/edit', (req, res) => {
+	User.update({
+		first_name: req.body.firstname,
+		last_name: req.body.lastname,
+		email: req.body.email
+	}, {
+		where: {
+			id: req.params.id
+		}
+	}).then((user) => {
+		res.redirect('/users')
+	}).catch((err) => {
+		res.render('error', err);
+	})
 })
 
 module.exports = router;
