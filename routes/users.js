@@ -74,6 +74,7 @@ router.put('/:id/edit', upload.single('photo'), (req, res) => {
 	}
 	// if user upload new photo, then remove old photo and save photo's name in database
 	if (req.file) {
+		// if old photo exists (old photo not empty) then unlink / remove the photo in directory
 		if (req.body.old_photo !== '')
 			fs.unlink(`uploads/photo/${req.body.old_photo}`);
 		user.photo = req.file.filename
