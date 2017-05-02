@@ -12,10 +12,11 @@ I created this to learn to make website with nodejs. Actualy I use expressjs fra
 
 # Installation
 * `npm install`
-* install sequelize-cli
+* install sequelize-cli globally
 * create config.js inside config directory from config.example.js and fill with your database
+* run `sequelize db:migrate`
 * `npm start`
 * http://localhost:3000/users
 
 # License
-This is under MIT license
+This is under [MIT license](LICENSE)
