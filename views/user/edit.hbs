@@ -1,6 +1,6 @@
-<div class="col-md-4 col-md-offset-4">
+<div class="col-md-4 col-md-offset-2">
 	<h2>Input User</h2>
-	<form action="/users/{{id}}/edit?_method=PUT" method="post" class="form">
+	<form action="/users/{{id}}/edit?_method=PUT" method="post" class="form" enctype="multipart/form-data">
 		<div class="form-group">
 			<label for="firstname">First Name</label>
 			<input type="text" name="firstname" id="firstname" value="{{first_name}}" class="form-control">
@@ -14,7 +14,16 @@
 			<input type="email" name="email" id="email" value="{{email}}" class="form-control">
 		</div>
 		<div class="form-group">
+			<label for="photo">Photo</label>
+			<input type="file" class="form-control" name="photo" id="photo">
+			<input type="hidden" value="{{photo}}" name="old_photo">
+		</div>
+		<div class="form-group">
 			<button class="btn btn-primary" type="submit">Save User</button>
 		</div>
 	</form>
+</div>
+
+<div class="col-md-4">
+	<img src="/{{photo}}" alt="" class="img-responsive">
 </div>

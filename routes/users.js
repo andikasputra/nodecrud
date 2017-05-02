@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 	},
 	filename: (req, file, cb) => {
 		// save file with current timestamp + user email + file extension
-		cb(null, Date.now() + req.body.email + path.extname(file.originalname));
+		cb(null, Date.now() + path.extname(file.originalname));
 	}
 })
 
@@ -31,12 +31,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', upload.single('photo'), (req, res) => {
-	console.log(req.file)
 	User.create({
 		first_name: req.body.firstname,
 		last_name: req.body.lastname,
 		email: req.body.email,
-		photo: req.file.filename
+		photo: !req.file ? 'placeholder.jpg' : req.file.filename
 	}).then((user) => {
 		res.redirect('/users')
 	}).catch((err) => {
@@ -67,12 +66,19 @@ router.get('/:id/edit', (req, res) => {
 		})
 })
 
-router.put('/:id/edit', (req, res) => {
-	User.update({
+router.put('/:id/edit', upload.single('photo'), (req, res) => {
+	const user = {
 		first_name: req.body.firstname,
 		last_name: req.body.lastname,
 		email: req.body.email
-	}, {
+	}
+	// if user upload new photo, then remove old photo and save photo's name in database
+	if (req.file) {
+		if (req.body.old_photo !== '')
+			fs.unlink(`uploads/photo/${req.body.old_photo}`);
+		user.photo = req.file.filename
+	}
+	User.update(user, {
 		where: {
 			id: req.params.id
 		}
